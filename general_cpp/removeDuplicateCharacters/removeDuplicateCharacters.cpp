@@ -17,6 +17,26 @@ string removeDuplicates(const string &str, string &dups) {
 	return tmp;
 }
 
+void removeDuplicates(string &str) {
+	if (str.empty()) return;
+	size_t len = str.length();
+	if (len < 2) return;
+	int tail = 1;
+	int i,j;
+
+	for (i = 1; i < len; ++i) {
+		for (j = 0; j < len; ++j) {
+			if (str[i] == str[j])
+				break;
+		}
+		if (j == tail) {
+			str[tail] = str[i];
+			++tail;
+		}
+	}
+	str[tail] = 0;
+}
+
 int main(int argc, char **argv) {
 	string str = "hello world";
 	string dups, unique;
